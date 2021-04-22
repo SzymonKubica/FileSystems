@@ -53,8 +53,6 @@ public class DocDirectory extends DocFile {
             .collect(Collectors.toList()).get(0);
   }
 
-
-
   @Override
   public int getSize() {
     return getName().length();
