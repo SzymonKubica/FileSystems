@@ -11,8 +11,15 @@ public class DocFileUtils {
    *         or indirectly in this directory.
    */
   public static int getTotalDirectorySize(DocDirectory directory) {
-    // TODO: implement as part of Question 4
-    return 0;
+    int totalSize = 0;
+    for (DocFile file : directory.getAllFiles()) {
+      if (file.isDataFile()) {
+        totalSize += file.getSize();
+      } else {
+        totalSize += getTotalDirectorySize(file.asDirectory());
+      }
+    }
+    return totalSize + directory.getSize();
   }
 
   /**
@@ -26,8 +33,12 @@ public class DocFileUtils {
    *         this duplicate to the destination directory.
    */
   public static boolean copy(DocDirectory src, DocDirectory dst, String filename) {
-    // TODO: implement as part of Question 4
-    return false;
+    if (src.containsFile(filename)) {
+      dst.addFile(src.getFile(filename).duplicate());
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -38,8 +49,24 @@ public class DocFileUtils {
    *         given byte.  Otherwise, return an optional containing any such file.
    */
   public static Optional<DocDataFile> searchForByte(DocFile root, byte someByte) {
-    // TODO: implement as part of Question 4
-    return Optional.empty();
+    if (root.isDataFile()) {
+      return searchForByteInDataFile(root.asDataFile(), someByte);
+    } else {
+      for (DocFile file : root.asDirectory().getAllFiles()) {
+        if (searchForByte(file, someByte).isPresent()) {
+          return searchForByte(file, someByte);
+        }
+      }
+      return Optional.empty();
+    }
+  }
+
+  private static Optional<DocDataFile> searchForByteInDataFile(DocDataFile file, byte someByte) {
+    if (file.containsByte(someByte)) {
+      return Optional.of(file);
+    } else {
+      return Optional.empty();
+    }
   }
 
 }
