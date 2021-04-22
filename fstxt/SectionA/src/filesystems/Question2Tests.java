@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.junit.Test;
 
 public class Question2Tests {
 
-  /*
   @Test
   public void testEquals() {
-    DocDataFile f1 = new DocDataFile("hello", new byte[] { 1, 2, 3 });
+    DocDataFile f1 = new DocDataFile("hello", new byte[]{1, 2, 3});
     StringBuilder sb = new StringBuilder();
     sb.append("he");
     sb.append("llo");
@@ -25,7 +25,7 @@ public class Question2Tests {
     DocDataFile f2 = new DocDataFile(sb.toString(), ba);
     DocDataFile f3 = new DocDataFile("hello", ba);
     DocDataFile f4 = new DocDataFile("hello1", ba);
-    DocDataFile f5 = new DocDataFile("hello", new byte[] { 1, 2 });
+    DocDataFile f5 = new DocDataFile("hello", new byte[]{1, 2});
 
     Set<Object> objectSet = new HashSet<>();
     objectSet.add(new IOException());
@@ -52,6 +52,5 @@ public class Question2Tests {
     assertNotEquals(f2, null);
 
   }
-  */
 
 }

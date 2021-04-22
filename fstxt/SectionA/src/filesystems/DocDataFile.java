@@ -1,5 +1,7 @@
 package filesystems;
 
+import java.util.Arrays;
+
 public class DocDataFile extends DocFile {
   private final byte[] contents;
 
@@ -50,5 +52,19 @@ public class DocDataFile extends DocFile {
   @Override
   public DocFile duplicate() {
     return new DocDataFile(getName(), contents);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other instanceof DocDataFile) {
+      return getName().equals(((DocDataFile) other).getName())
+              && Arrays.equals(contents, ((DocDataFile) other).contents);
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return getSize() * contents.length;
   }
 }
