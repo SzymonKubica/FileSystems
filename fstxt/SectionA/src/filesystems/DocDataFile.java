@@ -5,11 +5,6 @@ import java.util.Arrays;
 public class DocDataFile extends DocFile {
   private final byte[] contents;
 
-  /**
-   * Construct a file with the given name.
-   *
-   * @param name The name of the file.
-   */
   public DocDataFile(String name, byte[] contents) {
     super(name);
     this.contents = contents;
